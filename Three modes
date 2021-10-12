@@ -1,0 +1,32 @@
+def on_button_pressed_a():
+    global mode
+    mode += 1
+    if mode == 1:
+        basic.clear_screen()
+        basic.show_number(temperature)
+    elif mode == 2:
+        basic.show_number(light2)
+    elif mode == 3:
+        basic.show_number(steps)
+        mode = 0
+input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_gesture_shake():
+    global amount
+    amount += 1
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)
+
+amount = 0
+light2 = 0
+temperature = 0
+steps = 0
+mode = 0
+mode = 0
+steps = 0
+
+def on_forever():
+    global temperature, light2, steps
+    temperature = input.temperature()
+    light2 = input.light_level()
+    steps = amount
+basic.forever(on_forever)

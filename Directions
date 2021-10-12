@@ -1,0 +1,102 @@
+def on_button_pressed_a():
+    global _switch
+    _switch += 1
+    if _switch % 2 == 0:
+        basic.clear_screen()
+        if bearing >= 0 and bearing <= 44:
+            basic.show_arrow(ArrowNames.NORTH)
+        elif bearing >= 45 and bearing <= 89:
+            basic.show_arrow(ArrowNames.NORTH_EAST)
+        elif bearing >= 90 and bearing <= 134:
+            basic.show_arrow(ArrowNames.EAST)
+        elif bearing >= 135 and bearing <= 179:
+            basic.show_arrow(ArrowNames.SOUTH_EAST)
+        elif bearing >= 180 and bearing <= 224:
+            basic.show_arrow(ArrowNames.SOUTH)
+        elif bearing >= 225 and bearing <= 269:
+            basic.show_arrow(ArrowNames.SOUTH_WEST)
+        elif bearing >= 270 and bearing <= 314:
+            basic.show_arrow(ArrowNames.WEST)
+        elif bearing >= 315 and bearing <= 359:
+            basic.show_arrow(ArrowNames.NORTH_WEST)
+    else:
+        basic.clear_screen()
+        if bearing >= 0 and bearing <= 44:
+            basic.show_string("N")
+        elif bearing >= 45 and bearing <= 89:
+            basic.show_string("NE")
+        elif bearing >= 90 and bearing <= 134:
+            basic.show_string("E")
+        elif bearing >= 135 and bearing <= 179:
+            basic.show_string("SE")
+        elif bearing >= 180 and bearing <= 224:
+            basic.show_string("S")
+        elif bearing >= 225 and bearing <= 269:
+            basic.show_string("SW")
+        elif bearing >= 270 and bearing <= 314:
+            basic.show_string("W")
+        elif bearing >= 315 and bearing <= 359:
+            basic.show_string("NW")
+input.on_button_pressed(Button.A, on_button_pressed_a)
+
+def on_button_pressed_b():
+    global _switch
+    _switch += 1
+    if _switch % 2 == 0:
+        basic.clear_screen()
+        if bearing >= 0 and bearing <= 44:
+            basic.show_string("N")
+        elif bearing >= 45 and bearing <= 89:
+            basic.show_string("NE")
+        elif bearing >= 90 and bearing <= 134:
+            basic.show_string("E")
+        elif bearing >= 135 and bearing <= 179:
+            basic.show_string("SE")
+        elif bearing >= 180 and bearing <= 224:
+            basic.show_string("S")
+        elif bearing >= 225 and bearing <= 269:
+            basic.show_string("SW")
+        elif bearing >= 270 and bearing <= 314:
+            basic.show_string("W")
+        elif bearing >= 315 and bearing <= 359:
+            basic.show_string("NW")
+    else:
+        basic.clear_screen()
+        if bearing >= 0 and bearing <= 44:
+            basic.show_string("C")
+        elif bearing >= 45 and bearing <= 89:
+            basic.show_string("CB")
+        elif bearing >= 90 and bearing <= 134:
+            basic.show_string("B")
+        elif bearing >= 135 and bearing <= 179:
+            basic.show_string("ЮB")
+        elif bearing >= 180 and bearing <= 224:
+            basic.show_string("Ю")
+        elif bearing >= 225 and bearing <= 269:
+            basic.show_string("Ю3")
+        elif bearing >= 270 and bearing <= 314:
+            basic.show_string("W")
+        elif bearing >= 315 and bearing <= 359:
+            basic.show_string("C3")
+input.on_button_pressed(Button.B, on_button_pressed_b)
+
+bearing = 0
+_switch = 0
+_switch = 0
+
+def on_forever():
+    global bearing
+    bearing = input.compass_heading()
+basic.forever(on_forever)
+
+def on_forever2():
+    if input.button_is_pressed(Button.AB):
+        if bearing >= 45 and bearing < 135:
+            basic.show_string("E")
+        elif bearing >= 135 and bearing < 225:
+            basic.show_string("S")
+        elif bearing >= 225 and bearing < 315:
+            basic.show_string("W")
+        else:
+            basic.show_string("N")
+basic.forever(on_forever2)
